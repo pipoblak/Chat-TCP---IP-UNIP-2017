@@ -1,0 +1,77 @@
+﻿<Window x:Class="CHAT_TCP_IP_APS.FrmServer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CHAT_TCP_IP_APS"
+        mc:Ignorable="d"
+        Title="FFL - Chat Tcp IP" Height="700" Width="1024" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="Window_MouseLeftButtonDown" >
+    <Border BorderThickness="0" CornerRadius="3" Background="#FFECF0F1">
+        <Canvas HorizontalAlignment="Left" VerticalAlignment="Top" Width="1024" Height="700">
+           
+            <Canvas Height="504" Width="861" Canvas.Top="90" Background="#FFBDC3C7">
+                <RichTextBox x:Name="serverConsole" Height="504" Width="861" Background="{x:Null}" SelectionBrush="#FF95A5A6" Foreground="White">
+                    <RichTextBox.Template>
+                        <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                </Trigger>
+                                <Trigger Property="IsKeyboardFocused" Value="True">
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </RichTextBox.Template>
+                    <FlowDocument>
+                        <Paragraph>
+                            <Run Text=""/>
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+            </Canvas>
+            <Canvas Height="504" Width="163" Canvas.Left="861" Canvas.Top="90" Background="#FF95A5A6"/>
+            <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Canvas.Top="20" FontSize="36" Text="Servidor" Foreground="#FF27AE60" Width="1024" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"/>
+            <TextBox x:Name="txtMensagem" Height="32" TextWrapping="Wrap" Canvas.Top="592" Width="861" TextAlignment="Center" FontSize="18" Background="White" SelectionBrush="#FF95A5A6" BorderBrush="{x:Null}" Foreground="#FF2C3E50" BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBox.Template>
+                    <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FF95A5A6"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FF95A5A6"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </TextBox.Template>
+            </TextBox>
+            <Button x:Name="btnEnviar" Content="Enviar" Height="32" Canvas.Left="861" Canvas.Top="592" Width="163" BorderBrush="{x:Null}" Foreground="White" Background="#FF7F8C8D" BorderThickness="0" FontSize="18"/>
+            <ListView x:Name="lvConnectedUsers" Height="497" Canvas.Left="861" Canvas.Top="90" Width="163" Background="{x:Null}" BorderThickness="0" SelectionMode="Single">
+                <ListView.ItemTemplate >
+                    <DataTemplate>
+                        <Canvas Width="Auto" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" MouseLeftButtonDown="Canvas_MouseLeftButtonDown">
+                            <TextBlock TextWrapping="Wrap" Text="{Binding current_ping}"  Width="154" Foreground="#F1C40F" FontSize="9"  TextAlignment="Right" Canvas.Top="0" />
+                            <TextBlock TextWrapping="Wrap" Text="{Binding nickname}"  Width="154" TextAlignment="Center" Canvas.Top="11" />
+                            <TextBlock TextWrapping="Wrap" Text="{Binding current_connection_datetime}"  Width="154" Foreground="#FFECF0F1" FontSize="9"  TextAlignment="Right" Canvas.Top="27" />
+                            <TextBlock Visibility="Hidden" Text="{Binding connection_id}"/>
+                        </Canvas>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+            <TextBlock x:Name="textBlock2" Canvas.Left="894" TextWrapping="Wrap" Text="Clientes Conectados" Canvas.Top="73" Foreground="#FFE74C3C"/>
+            <TextBlock x:Name="textBlock" Canvas.Left="998" TextWrapping="Wrap" Text="X" Canvas.Top="12" FontSize="18" FontWeight="Bold" Foreground="#FF7F8C8D" MouseLeftButtonDown="textBlock_MouseLeftButtonDown" />
+        </Canvas>
+    </Border>
+</Window>

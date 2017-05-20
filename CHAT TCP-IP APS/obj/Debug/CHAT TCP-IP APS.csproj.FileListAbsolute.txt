@@ -1,0 +1,20 @@
+c:\users\pipob\documents\visual studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\bin\Debug\CHAT TCP-IP APS.exe.config
+c:\users\pipob\documents\visual studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\bin\Debug\CHAT TCP-IP APS.exe
+c:\users\pipob\documents\visual studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\bin\Debug\CHAT TCP-IP APS.pdb
+c:\users\pipob\documents\visual studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\obj\Debug\CHAT TCP-IP APS.csprojResolveAssemblyReference.cache
+c:\users\pipob\documents\visual studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\obj\Debug\MainWindow.g.cs
+c:\users\pipob\documents\visual studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\obj\Debug\App.g.cs
+c:\users\pipob\documents\visual studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\obj\Debug\CHAT TCP-IP APS_MarkupCompile.cache
+c:\users\pipob\documents\visual studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\obj\Debug\CHAT TCP-IP APS_MarkupCompile.lref
+c:\users\pipob\documents\visual studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\obj\Debug\MainWindow.baml
+c:\users\pipob\documents\visual studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\obj\Debug\CHAT TCP-IP APS.g.resources
+c:\users\pipob\documents\visual studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\obj\Debug\CHAT_TCP_IP_APS.Properties.Resources.resources
+c:\users\pipob\documents\visual studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\obj\Debug\CHAT TCP-IP APS.csproj.GenerateResource.Cache
+c:\users\pipob\documents\visual studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\obj\Debug\CHAT TCP-IP APS.exe
+c:\users\pipob\documents\visual studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\obj\Debug\CHAT TCP-IP APS.pdb
+c:\users\pipob\documents\visual studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\obj\Debug\FrmServer.g.cs
+c:\users\pipob\documents\visual studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\obj\Debug\FrmServer.baml
+C:\Users\pipob\Documents\Visual Studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\bin\Debug\Newtonsoft.Json.dll
+C:\Users\pipob\Documents\Visual Studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\bin\Debug\Newtonsoft.Json.xml
+C:\Users\pipob\Documents\Visual Studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\obj\Debug\FrmClient.g.cs
+C:\Users\pipob\Documents\Visual Studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\obj\Debug\FrmClient.baml
