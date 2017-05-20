@@ -47,6 +47,7 @@ namespace CHAT_TCP_IP_APS
         private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             String clientId= (((TextBlock) ((Canvas)sender).Children[3]).Text);
+            MessageBox.Show(clientId);
         }
 
         private void button_Click(object sender, RoutedEventArgs e)

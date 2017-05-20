@@ -72,6 +72,12 @@ namespace CHAT_TCP_IP_APS
                     UserConnected(users);
                     SendToAll(new Message().strMessage(null,null, JsonConvert.SerializeObject(users.ToArray(), jsonsettings) , Message.REFRESH_TYPE));
                     break;
+
+                case 1:
+                    writeConsole(message.from.nickname + " : " + message.message + "\n");
+                    SendToAll(new Message().strMessage(user, null, message.from.nickname + " : " + message.message + "\n", Message.SIMPLE_MESSAGE_TYPE));
+                    
+                    break;
                 case 3:
                     user.logout();
                     writeConsole(message.from.nickname + " Saiu");
@@ -79,7 +85,7 @@ namespace CHAT_TCP_IP_APS
 
 
             }
-            writeConsole(message.message);
+            //writeConsole(message.message);
             //SendToAll(text);
         }
         public void userDisconnect(UserClient user, string text)

@@ -69,8 +69,11 @@ namespace CHAT_TCP_IP_APS
                         this.lvConnectedUsers.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => this.lvConnectedUsers.ItemsSource = users));
                         this.lvConnectedUsers.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => this.lvConnectedUsers.Items.Refresh()));
                         break;
+                    case 1:
+                        this.serverConsole.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => this.serverConsole.AppendText(message.message)));
+                        break;
                 }
-                this.serverConsole.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => this.serverConsole.AppendText(text + "\n")));
+                
                 messageAssist = "";
             } catch (Exception ex) {
                 
@@ -99,8 +102,9 @@ namespace CHAT_TCP_IP_APS
 
         private void btnEnviar_Click(object sender, RoutedEventArgs e)
         {
+            
             if (client.connection_status = true) {
-                client.SendPacket((new Message()).strMessage(null,null,txtMensagem.Text,Message.SIMPLE_MESSAGE_TYPE));
+                client.SendPacket((new Message()).strMessage(client,null,txtMensagem.Text,Message.SIMPLE_MESSAGE_TYPE));
                 txtMensagem.Text = "";
 
             }
