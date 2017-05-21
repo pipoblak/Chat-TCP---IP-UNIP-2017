@@ -8,9 +8,9 @@
         Title="FFL - Chat Tcp IP" Height="700" Width="1024" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="Window_MouseLeftButtonDown" >
     <Border BorderThickness="0" CornerRadius="3" Background="#FFECF0F1">
         <Canvas HorizontalAlignment="Left" VerticalAlignment="Top" Width="1024" Height="700">
-           
-            <Canvas Height="504" Width="861" Canvas.Top="90" Background="#FFBDC3C7">
-                <RichTextBox x:Name="serverConsole" Height="504" Width="861" Background="{x:Null}" SelectionBrush="#FF95A5A6" Foreground="White">
+
+            <Canvas Height="504" Width="800" Canvas.Top="90" Background="#FFBDC3C7">
+                <RichTextBox x:Name="serverConsole" Height="504" Width="800" Background="{x:Null}" SelectionBrush="#FF95A5A6" Foreground="White" IsReadOnlyCaretVisible="True">
                     <RichTextBox.Template>
                         <ControlTemplate TargetType="{x:Type TextBoxBase}">
                             <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
@@ -34,9 +34,9 @@
                     </FlowDocument>
                 </RichTextBox>
             </Canvas>
-            <Canvas Height="504" Width="163" Canvas.Left="861" Canvas.Top="90" Background="#FF95A5A6"/>
+            <Canvas Height="504" Width="224" Canvas.Left="800" Canvas.Top="90" Background="#FF95A5A6"/>
             <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Canvas.Top="20" FontSize="36" Text="Servidor" Foreground="#FF27AE60" Width="1024" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"/>
-            <TextBox x:Name="txtMensagem" Height="32" TextWrapping="Wrap" Canvas.Top="592" Width="861" TextAlignment="Center" FontSize="18" Background="White" SelectionBrush="#FF95A5A6" BorderBrush="{x:Null}" Foreground="#FF2C3E50" BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBox x:Name="txtMensagem" Height="32" TextWrapping="Wrap" Canvas.Top="592" Width="800" TextAlignment="Center" FontSize="18" Background="White" SelectionBrush="#FF95A5A6" BorderBrush="{x:Null}" Foreground="#FF2C3E50" BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBox.Template>
                     <ControlTemplate TargetType="{x:Type TextBoxBase}">
                         <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
@@ -56,8 +56,8 @@
                     </ControlTemplate>
                 </TextBox.Template>
             </TextBox>
-            <Button x:Name="btnEnviar" Content="Enviar" Height="32" Canvas.Left="861" Canvas.Top="592" Width="163" BorderBrush="{x:Null}" Foreground="White" Background="#FF7F8C8D" BorderThickness="0" FontSize="18"/>
-            <ListView x:Name="lvConnectedUsers" Height="497" Canvas.Left="861" Canvas.Top="90" Width="163" Background="{x:Null}" BorderThickness="0" SelectionMode="Single">
+            <Button x:Name="btnEnviar" Content="Enviar" Height="32" Canvas.Left="800" Canvas.Top="592" Width="224" BorderBrush="{x:Null}" Foreground="White" Background="#FF7F8C8D" BorderThickness="0" FontSize="18" Click="btnEnviar_Click" IsDefault="True"/>
+            <ListView x:Name="lvConnectedUsers" Height="497" Canvas.Left="800" Canvas.Top="90" Width="224" Background="{x:Null}" BorderThickness="0" SelectionMode="Single">
                 <ListView.ItemTemplate >
                     <DataTemplate>
                         <Canvas Width="Auto" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" MouseLeftButtonDown="Canvas_MouseLeftButtonDown">
@@ -70,7 +70,7 @@
                 </ListView.ItemTemplate>
 
             </ListView>
-            <TextBlock x:Name="textBlock2" Canvas.Left="894" TextWrapping="Wrap" Text="Clientes Conectados" Canvas.Top="73" Foreground="#FFE74C3C"/>
+            <TextBlock x:Name="textBlock2" Canvas.Left="860" TextWrapping="Wrap" Text="Clientes Conectados" Canvas.Top="73" Foreground="#FFE74C3C"/>
             <TextBlock x:Name="textBlock" Canvas.Left="998" TextWrapping="Wrap" Text="X" Canvas.Top="12" FontSize="18" FontWeight="Bold" Foreground="#FF7F8C8D" MouseLeftButtonDown="textBlock_MouseLeftButtonDown" />
         </Canvas>
     </Border>

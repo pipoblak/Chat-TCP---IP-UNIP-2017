@@ -12,6 +12,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Net;
 using Newtonsoft.Json;
+using System.Diagnostics;
+using System.Windows.Media;
 
 namespace CHAT_TCP_IP_APS
 {
@@ -29,7 +31,9 @@ namespace CHAT_TCP_IP_APS
         public string connection_id { get; set; }
         public bool connection_status { get; set; }
         public string current_ip { get; set; }
+        public Color color { get; set; }
 
+        public Stopwatch pingTimer;
         [JsonIgnore]
         public TcpClient user { get; set; }
         
@@ -41,6 +45,18 @@ namespace CHAT_TCP_IP_APS
         public UserClient(string nickname)
         {
             this.nickname = nickname;
+        }
+        public UserClient(string nickname, Color color)
+        {
+            this.nickname = nickname;
+            this.color = color;
+        }
+        public UserClient(TcpClient client,string nickname,Color color)
+        {
+            this.user = client;
+            this.color = color;
+            this.nickname = nickname;
+            Initialize();
         }
         public UserClient() {
         }
@@ -70,12 +86,20 @@ namespace CHAT_TCP_IP_APS
             BeginRead();
         }
 
+        public void sendPing() {
+            SendPacket(new Message().strMessage(null, null, "Ping", Message.PING_TYPE));
+            pingTimer = Stopwatch.StartNew();
+        }
+        public long getPong() {
+            return pingTimer.ElapsedMilliseconds;
+        }
         public void connectToServer(IPAddress ip, int port) {
             user.BeginConnect(ip, port, login,new object());
         }
         public void login(object a) {
             if (user.Connected) {
                 SendPacket(new Message().strMessage( this,null,"Connected",Message.CONNECTED_TYPE));
+                
             }
             
         }
@@ -83,15 +107,21 @@ namespace CHAT_TCP_IP_APS
         public void logout()
         {
             
-            OnDisconnected("Logout");
+            OnDisconnected("");
         }
+        public void kick(string reason)
+        {
+
+            OnDisconnected(reason);
+        }
+
 
         public void BeginRead()
         {
             if (user.Connected)
             {
-                byte[] buffer = new byte[6 * 1024];
-                user.GetStream().BeginRead(buffer, 0, 6 * 1024, ReceiveMessages, buffer);
+                byte[] buffer = new byte[1024];
+                user.GetStream().BeginRead(buffer, 0,1024, ReceiveMessages, buffer);
             }
         }
         private void ReceiveMessages(IAsyncResult result)

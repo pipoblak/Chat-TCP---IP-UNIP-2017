@@ -18,3 +18,5 @@ C:\Users\pipob\Documents\Visual Studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP
 C:\Users\pipob\Documents\Visual Studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\bin\Debug\Newtonsoft.Json.xml
 C:\Users\pipob\Documents\Visual Studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\obj\Debug\FrmClient.g.cs
 C:\Users\pipob\Documents\Visual Studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\obj\Debug\FrmClient.baml
+C:\Users\pipob\Documents\Visual Studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\obj\Debug\UserForm.g.cs
+C:\Users\pipob\Documents\Visual Studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\obj\Debug\UserForm.baml

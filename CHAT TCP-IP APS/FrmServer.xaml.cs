@@ -27,8 +27,9 @@ namespace CHAT_TCP_IP_APS
             server.ConsoleOutput += server_ConsoleOutput;
             server.UserConnected += server_UserConnected;
             server.UserDisconnected += server_UserDisconnected;
+            server.PingRefresh += server_PingRefresh;
             InitializeComponent();
-            
+            serverConsole.IsReadOnly = true;
             server.start();
             this.lvConnectedUsers.ItemsSource = server.users;
 
@@ -41,6 +42,7 @@ namespace CHAT_TCP_IP_APS
 
         private void textBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            server.stop();
             this.Close();
         }
 
@@ -59,6 +61,8 @@ namespace CHAT_TCP_IP_APS
         private void server_ConsoleOutput(string message)
         {
             this.serverConsole.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal,new Action(() => this.serverConsole.AppendText(message+"\n")));
+            this.serverConsole.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => this.serverConsole.ScrollToEnd()));
+            this.lvConnectedUsers.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => this.lvConnectedUsers.Items.Refresh()));
         }
 
         public void server_UserConnected(List<UserClient> users) {
@@ -68,6 +72,18 @@ namespace CHAT_TCP_IP_APS
         public void server_UserDisconnected(List<UserClient> users)
         {
             this.lvConnectedUsers.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => this.lvConnectedUsers.Items.Refresh()));
+        }
+
+        public void server_PingRefresh(String refresh)
+        {
+            this.lvConnectedUsers.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => this.lvConnectedUsers.Items.Refresh()));
+        }
+
+        private void btnEnviar_Click(object sender, RoutedEventArgs e)
+        {
+            server.SendToAll(new Message().strMessage(new UserClient("SERVER",Colors.Gold), null,"SERVER : "+ txtMensagem.Text +"\n", Message.SIMPLE_MESSAGE_TYPE));
+            server.writeConsole("Broadcast: " + txtMensagem.Text);
+            txtMensagem.Text = "";
         }
     }
 }

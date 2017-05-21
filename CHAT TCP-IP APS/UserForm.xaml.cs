@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -10,24 +11,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CHAT_TCP_IP_APS
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for UserForm.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class UserForm : Window
     {
-        public MainWindow()
+        public UserForm()
         {
             InitializeComponent();
-        }
-
-        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
         }
 
         private void textBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -35,16 +30,15 @@ namespace CHAT_TCP_IP_APS
             this.Close();
         }
 
-        private void btnServidor_Click(object sender, RoutedEventArgs e)
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            FrmServer frmServer = new FrmServer();
-            frmServer.Show();
+            this.DragMove();
         }
 
-        private void btnCliente_Click(object sender, RoutedEventArgs e)
+        private void btnEntrar_Click(object sender, RoutedEventArgs e)
         {
-            UserForm frmClient = new UserForm();
-            frmClient.Show();
+            FrmClient frmClient = new FrmClient();
+            frmClient.Show(new UserClient(new TcpClient(), txtName.Text, Colors.Black),txtIp.Text);
         }
     }
 }
