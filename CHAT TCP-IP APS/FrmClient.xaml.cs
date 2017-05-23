@@ -67,7 +67,7 @@ namespace CHAT_TCP_IP_APS
             
         }
         public void messageRecived(UserClient user, string text) {
-            try
+           try
             {
                 try {
                     messageAssist += text;
