@@ -20,3 +20,5 @@ C:\Users\pipob\Documents\Visual Studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP
 C:\Users\pipob\Documents\Visual Studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\obj\Debug\FrmClient.baml
 C:\Users\pipob\Documents\Visual Studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\obj\Debug\UserForm.g.cs
 C:\Users\pipob\Documents\Visual Studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\obj\Debug\UserForm.baml
+C:\Users\pipob\Documents\Visual Studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\bin\Debug\Resources\aps.jpg
+C:\Users\pipob\Documents\Visual Studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\obj\Debug\CHAT TCP-IP APS_Content.g.cs

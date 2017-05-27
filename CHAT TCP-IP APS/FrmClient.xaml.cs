@@ -55,15 +55,18 @@ namespace CHAT_TCP_IP_APS
 
         }
         public void Listen() {
-            client.BeginRead();
-            if (client.user.Connected)
-              {         
+            try {
+                if (client.user.Connected)
+                {
 
                 }
                 else {
                     this.btnEnviar.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => this.btnEnviar.IsEnabled = false));
                     this.txtMensagem.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => this.txtMensagem.IsEnabled = false));
                 }
+            } catch (Exception e ) { MessageBox.Show(e.Message); }
+            client.BeginRead();
+      
             
         }
         public void messageRecived(UserClient user, string text) {
@@ -124,25 +127,24 @@ namespace CHAT_TCP_IP_APS
             this.client = client;
             ipAddress = ip;
             this.Show();
+
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             try
             {
-                
-                
                 client.MessageReceived += messageRecived;
                 client.Disconnected += disconnect;
-                client.connectToServer(IPAddress.Parse(ipAddress), 56863);
                 Thread listenerThread = new Thread(Listen);
                 listenerThread.IsBackground = true;
                 listenerThread.Start();
+                client.connectToServer(IPAddress.Parse(ipAddress), 56863);
                 pingerThread = new Thread(Ping);
                 pingerThread.IsBackground = true;
                 txtMensagem.Focus();
                 lvConnectedUsers.ItemsSource = users;
             } catch (Exception ex) {
-                
+                MessageBox.Show(ex.Message);
                 btnEnviar.IsEnabled = false;
                 txtMensagem.IsEnabled = false;
             }
@@ -150,9 +152,11 @@ namespace CHAT_TCP_IP_APS
 
         //CALLBACK Thread de Ping - 1000 Millis de intervalo de ping request
         public void Ping() {
-            while (true) {
+            while (client.user.Connected) {
                 if (!listLoaded)
                 {
+                    this.btnEnviar.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => this.btnEnviar.IsEnabled = true));
+                    this.txtMensagem.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => this.txtMensagem.IsEnabled = true));
                     client.SendPacket(new Message().strMessage(null, null, "Refresh", Message.REFRESH_TYPE));
                     listLoaded = true;
                 }

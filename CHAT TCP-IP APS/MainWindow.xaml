@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CHAT_TCP_IP_APS"
         mc:Ignorable="d"
-        Title="FFL - Chat Tcp IP" Height="500" Width="500" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        Title="FFL - Chat Tcp IP" Height="500" Width="500" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="Window_MouseLeftButtonDown" Icon="Resources/aps.jpg">
+    
     <Border BorderThickness="0" CornerRadius="3" Background="#FFECF0F1">
         <Canvas HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Height="500">
             <Button x:Name="btnCliente" Content="Cliente" Width="250" Height="290" Background="#FF2C3E50" FontSize="36" Foreground="White" Canvas.Top="210" Click="btnCliente_Click">

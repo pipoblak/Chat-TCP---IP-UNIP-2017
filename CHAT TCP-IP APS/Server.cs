@@ -40,12 +40,20 @@ namespace CHAT_TCP_IP_APS
             Thread messagesQueueAll = new Thread(messagesToSendAll);
             messagesQueueAll.IsBackground = true;
             messagesQueueAll.Start();
-
+            Thread pingRefreshThread = new Thread(sendListPing);
+            pingRefreshThread.IsBackground = true;
+            pingRefreshThread.Start();
 
 
         }
-        public void stop() {
+        public void sendListPing() {
+            while (isServerOnline) {
+                Thread.Sleep(5000);
+                SendToAll(new Message().strMessage(null, null, JsonConvert.SerializeObject(users.ToArray()), Message.REFRESH_TYPE));
+            }
             
+        }
+        public void stop() {
             isServerOnline = false;
             listener.Stop();
             writeConsole("Server Fechado.");
@@ -104,8 +112,6 @@ namespace CHAT_TCP_IP_APS
                     user.SendPacket(new Message().strMessage(null, null, "pong", Message.PING_TYPE));
                     break;
                 case 6:
-                    user.current_ping = JsonConvert.DeserializeObject<UserClient>(message.message).current_ping;
-                    SendToAll(new Message().strMessage(null, null, JsonConvert.SerializeObject(user), Message.REFRESH_PING_TYPE));
                     PingRefresh("Refresh");
                     break;
             }

@@ -43,6 +43,11 @@ namespace CHAT_TCP_IP_APS
            return JsonConvert.DeserializeObject<Message>(text);
 
         }
+        public static List<Message> getDeserializedListMessage(string text)
+        {
+            return JsonConvert.DeserializeObject<List<Message>>(text);
+
+        }
 
     }
     
