@@ -53,14 +53,14 @@ namespace CHAT_TCP_IP_APS
         {
             FrmServer frmServer = new FrmServer();
             frmServer.Show();
-            this.Hide();
+           // this.Hide();
         }
 
         private void btnCliente_Click(object sender, RoutedEventArgs e)
         {
             UserForm frmClient = new UserForm();
             frmClient.Show();
-            this.Hide();
+            //this.Hide();
         }
     }
 }

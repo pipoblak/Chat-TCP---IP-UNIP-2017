@@ -11,6 +11,7 @@ namespace CHAT_TCP_IP_APS
 {
     public class Message
     {
+        //TIPOS DE MENSAGEM
         public static int CONNECTED_TYPE = 0;
         public static int SIMPLE_MESSAGE_TYPE = 1;
         public static int MESSAGE_PM_TYPE = 2;
@@ -19,11 +20,13 @@ namespace CHAT_TCP_IP_APS
         public static int PING_TYPE = 5;
         public static int REFRESH_PING_TYPE = 6;
 
+        //INFORMAÇÕES DE USUÁRIO
         public UserClient from { get; set; }
         public UserClient to { get; set; }
         public string message { get; set; }
         public int msgType { get; set; }
 
+        //METODO CONSTRUTOR
         public string strMessage(UserClient from, UserClient to, string message, int msgType)
         {
             this.from = from;
@@ -33,21 +36,20 @@ namespace CHAT_TCP_IP_APS
             return getSerializedMessage();
         }
 
+        //MENSAGEM SERIALIZADA COMO JSONSTRING
         public string getSerializedMessage() {
             string str = JsonConvert.SerializeObject(this);
             return str;
 
         }
+
+        //TRANSFORMA UMA STRING SERIALIZADA EM UM OBJETO 
         public static Message getDeserializedMessage(string text)
         {
            return JsonConvert.DeserializeObject<Message>(text);
 
         }
-        public static List<Message> getDeserializedListMessage(string text)
-        {
-            return JsonConvert.DeserializeObject<List<Message>>(text);
 
-        }
 
     }
     

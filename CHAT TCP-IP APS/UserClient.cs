@@ -19,12 +19,15 @@ namespace CHAT_TCP_IP_APS
 {
     public class UserClient
     {
+        //Handler para Mensagem Recebida pelo usuário
         public delegate void StringEventHandler(UserClient user, string text);
         public event StringEventHandler MessageReceived;
 
+        //Handler para quando o usuário for desconectado.
         public delegate void DisconnectEventHandler(UserClient user, string reason);
         public event DisconnectEventHandler Disconnected;
 
+        //Propiedades do usuário
         public string nickname { get; set; }
         public long current_ping { get; set; }
         public DateTime current_connection_datetime { get; set; }
@@ -33,10 +36,12 @@ namespace CHAT_TCP_IP_APS
         public string current_ip { get; set; }
         public Color color { get; set; }
 
+        //Stopwatch para medir ping
         public Stopwatch pingTimer;
         [JsonIgnore]
         public TcpClient user { get; set; }
         
+        //Métodos construtores
         public UserClient(TcpClient client)
         {
             this.user = client;
@@ -74,6 +79,8 @@ namespace CHAT_TCP_IP_APS
             this.nickname = nickname;
             Initialize();
         }
+
+        //Metodo de Inicialização do Cliente
         private void Initialize()
         {
             connection_status = true;
@@ -82,74 +89,90 @@ namespace CHAT_TCP_IP_APS
             } catch (Exception e) {
                 Console.WriteLine(e.Message);
             }
-
             BeginRead();
+
         }
 
+        //Método de envio de ping para o server
         public void sendPing() {
             SendPacket(new Message().strMessage(null, null, "Ping", Message.PING_TYPE));
             pingTimer = Stopwatch.StartNew();
         }
+
+        //Retorna o tempo passado desde o ultimo ping em millis
         public long getPong() {
             return pingTimer.ElapsedMilliseconds;
         }
+
+        //conecta com o servidor TCP-IP
         public void connectToServer(IPAddress ip, int port) {
-            user.BeginConnect(ip, port, login,new object());
+            user.Connect(ip, port);
+            login();
         }
-        public void login(object a) {
+
+        //Metodo que é executado após conectar, enviando os dados do usuário para o server.
+        public void login() {
             if (user.Connected) {
                 SendPacket(new Message().strMessage( this,null,"Connected",Message.CONNECTED_TYPE));
-                
+                BeginRead();
             }
             
         }
 
+        //Desconecta o usuário
         public void logout()
         {
             
             OnDisconnected("");
         }
+
+        //Expulsa um usuário
         public void kick(string reason)
         {
 
             OnDisconnected(reason);
         }
 
-
+        //Procura por dados na Stream do server
         public void BeginRead()
         {
-            if (user.Connected)
+            try
             {
                 byte[] buffer = new byte[1024];
-                user.GetStream().BeginRead(buffer, 0,1024, ReceiveMessages, buffer);
+                user.GetStream().BeginRead(buffer, 0, 1024, ReceiveMessages, buffer);
+            }
+            catch (Exception e)
+            {
+
             }
         }
+
+        //Assynctask apos receber mensagem
         private void ReceiveMessages(IAsyncResult result)
         {
-            if (connection_status)
+                
+            int length;
+            try
             {
-                int length;
-
-                try
-                {
-                    length = user.GetStream().EndRead(result);
-                }
-                catch (Exception e)
-                {
-                    OnDisconnected(e.Message);
-                    return;
-                }
-
-                if (length > 0)
-                {
-                    byte[] buffer = (byte[])result.AsyncState;
-                    string text = Encoding.UTF8.GetString(buffer, 0, length);
-                    OnMessageReceived(text);
-                }
-
-                BeginRead();
+                length = user.GetStream().EndRead(result);
             }
+            catch (Exception e)
+            {
+                OnDisconnected(e.Message);
+                return;
+            }
+
+            if (length > 0)
+            {
+                byte[] buffer = (byte[])result.AsyncState;
+                string text = Encoding.UTF8.GetString(buffer, 0, length);
+                OnMessageReceived(text);
+            }
+            BeginRead();
+
         }
+
+        //Ação quando recebe uma mensagem
         protected void OnMessageReceived(string text)
         {
             if (MessageReceived != null)
@@ -157,6 +180,8 @@ namespace CHAT_TCP_IP_APS
                 MessageReceived(this, text);
             }
         }
+
+        //Ação quando desconecta
         protected void OnDisconnected(string reason)
         {
             connection_status = false;
@@ -166,6 +191,7 @@ namespace CHAT_TCP_IP_APS
                  Disconnected(this, reason);
             }
         }
+        //Envio de Pacote com thread.
         public void SendPacket(string packetInfo)
         {
             new Thread(() => SendPacketThread(packetInfo)).Start();
@@ -176,11 +202,6 @@ namespace CHAT_TCP_IP_APS
             try
             {
                 StreamWriter sw = new StreamWriter(user.GetStream());
-                //jsonserializersettings jsonsettings = new jsonserializersettings
-                //{
-                //    nullvaluehandling = nullvaluehandling.ignore
-                //};
-                //string data = jsonconvert.serializeobject(packetinfo, jsonsettings);
                 sw.Write(packetInfo);
                 sw.Flush();
             }
@@ -188,6 +209,7 @@ namespace CHAT_TCP_IP_APS
             {
 
             }
+
         }
     }
 }
