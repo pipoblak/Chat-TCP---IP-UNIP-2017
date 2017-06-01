@@ -38,7 +38,8 @@ namespace CHAT_TCP_IP_APS
         private void btnEntrar_Click(object sender, RoutedEventArgs e)
         {
             FrmClient frmClient = new FrmClient();
-            frmClient.Show(new UserClient(new TcpClient(), txtName.Text, Colors.Black),txtIp.Text);
+            frmClient.Show(new UserClient(new TcpClient(), txtName.Text, Colors.Black),txtIp.Text,this);
+            
         }
     }
 }

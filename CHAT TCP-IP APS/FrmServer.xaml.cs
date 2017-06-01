@@ -23,16 +23,24 @@ namespace CHAT_TCP_IP_APS
 
         public FrmServer()
         {
-            server = new Server(56863);
-            server.ConsoleOutput += server_ConsoleOutput;
-            server.UserConnected += server_UserConnected;
-            server.UserDisconnected += server_UserDisconnected;
-            server.PingRefresh += server_PingRefresh;
-            InitializeComponent();
-            serverConsole.IsReadOnly = true;
-            server.start();
-            this.lvConnectedUsers.ItemsSource = server.users;
+            try {
+                server = new Server(56863);
+                server.ConsoleOutput += server_ConsoleOutput;
+                server.UserConnected += server_UserConnected;
+                server.UserDisconnected += server_UserDisconnected;
+                server.PingRefresh += server_PingRefresh;
+                InitializeComponent();
+                serverConsole.IsReadOnly = true;
+                server.start();
+                this.lvConnectedUsers.ItemsSource = server.users;
 
+            }
+            catch (Exception e) {
+                this.Close();
+                MessageBox.Show("Não foi possivel instanciar o server, verifique se não há uma instancia rodando.");
+
+            }
+            
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

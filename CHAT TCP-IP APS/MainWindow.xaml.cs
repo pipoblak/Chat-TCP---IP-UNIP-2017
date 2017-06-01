@@ -51,16 +51,21 @@ namespace CHAT_TCP_IP_APS
 
         private void btnServidor_Click(object sender, RoutedEventArgs e)
         {
-            FrmServer frmServer = new FrmServer();
-            frmServer.Show();
-           // this.Hide();
+            try {
+                FrmServer frmServer = new FrmServer();
+                frmServer.Show();
+                notifyIcon.ShowBalloonTip(500,"Minimizado para Barra de Tarefas","Se desejar ver as opções clique no Icone na barra de tarefas",System.Windows.Forms.ToolTipIcon.Info);
+                this.Hide();
+            } catch  { }
+            
         }
 
         private void btnCliente_Click(object sender, RoutedEventArgs e)
         {
             UserForm frmClient = new UserForm();
             frmClient.Show();
-            //this.Hide();
+            notifyIcon.ShowBalloonTip(500, "Minimizado para Barra de Tarefas", "Se desejar ver as opções clique no Icone na barra de tarefas", System.Windows.Forms.ToolTipIcon.Info);
+            this.Hide();
         }
     }
 }

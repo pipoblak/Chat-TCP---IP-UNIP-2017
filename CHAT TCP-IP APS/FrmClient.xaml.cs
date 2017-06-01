@@ -103,14 +103,10 @@ namespace CHAT_TCP_IP_APS
             
         }
 
-        public void Show(UserClient client,String ip) {
+        public void Show(UserClient client,String ip, UserForm userForm) {
             this.client = client;
             ipAddress = ip;
-            this.Show();
-
-        }
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
+            userForm.Close();
             try
             {
                 client.MessageReceived += messageRecived;
@@ -121,11 +117,20 @@ namespace CHAT_TCP_IP_APS
                 pingerThread.Start();
                 txtMensagem.Focus();
                 lvConnectedUsers.ItemsSource = users;
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message);
                 btnEnviar.IsEnabled = false;
                 txtMensagem.IsEnabled = false;
             }
+            this.Show();
+
+
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            
         }
 
         //CALLBACK Thread de Ping - 1000 Millis de intervalo de ping request
@@ -165,7 +170,9 @@ namespace CHAT_TCP_IP_APS
         public void disconnect(UserClient user ,string reason) {
             if (reason != "")
                 MessageBox.Show("Desconectando... Razão: " + reason);
-            
+            this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => this.Close()));
+
+
         }
         public static void textWithColor( RichTextBox serverConsole, string text, Color color)
         {

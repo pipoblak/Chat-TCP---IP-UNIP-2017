@@ -104,11 +104,11 @@ namespace CHAT_TCP_IP_APS
                     user.current_connection_datetime = DateTime.Now;
                     user.current_ping = 0;
                     user.connection_id = Guid.NewGuid().ToString("N");
-                    if (users.FindAll(UserClient => UserClient.nickname.Equals(user.nickname) == true).Count > 0) { 
-                        user.SendPacket(new Message().strMessage(null, null, "Nome já utilizado", Message.DISCONNECTED_TYPE));
+                    if (users.FindAll(UserClient => UserClient.nickname.Equals(user.nickname) == true).Count > 0 || user.nickname.Equals("SERVER") || user.nickname.Equals("")) {
+                        user.SendPacket(new Message().strMessage(null, null, "Nome já utilizado ou inválido.", Message.DISCONNECTED_TYPE));
                         user.logout();
                         writeConsole(message.from.nickname + " repetido KICKADO");
-                       }
+                    }
                     else {
                         users.Add(user);
                         UserConnected(users);
