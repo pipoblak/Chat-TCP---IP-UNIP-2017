@@ -1,10 +1,9 @@
-C:\Users\pipob\Documents\Visual Studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\bin\Release\CHAT TCP-IP APS.exe.config
 C:\Users\pipob\Documents\Visual Studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\bin\Release\Resources\aps.jpg
+C:\Users\pipob\Documents\Visual Studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\bin\Release\CHAT TCP-IP APS.exe.config
 C:\Users\pipob\Documents\Visual Studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\bin\Release\CHAT TCP-IP APS.exe
 C:\Users\pipob\Documents\Visual Studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\bin\Release\CHAT TCP-IP APS.pdb
 C:\Users\pipob\Documents\Visual Studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\bin\Release\Newtonsoft.Json.dll
 C:\Users\pipob\Documents\Visual Studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\bin\Release\Newtonsoft.Json.xml
-C:\Users\pipob\Documents\Visual Studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\obj\Release\CHAT TCP-IP APS.csprojResolveAssemblyReference.cache
 C:\Users\pipob\Documents\Visual Studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\obj\Release\FrmClient.g.cs
 C:\Users\pipob\Documents\Visual Studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\obj\Release\FrmServer.g.cs
 C:\Users\pipob\Documents\Visual Studio 2015\Projects\CHAT TCP-IP APS\CHAT TCP-IP APS\obj\Release\MainWindow.g.cs
